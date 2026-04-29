@@ -3,20 +3,19 @@ local MainFrame = Instance.new("Frame")
 local ToggleBtn = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 
--- Configurações da Janela
-ScreenGui.Parent = game.CoreGui
+-- Criar a Interface
+ScreenGui.Parent = game:GetService("CoreGui")
 MainFrame.Name = "DragonPanel"
 MainFrame.Parent = ScreenGui
 MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-MainFrame.Position = UDim2.new(0.05, 0, 0.4, 0)
+MainFrame.Position = UDim2.new(0.1, 0, 0.4, 0)
 MainFrame.Size = UDim2.new(0, 150, 0, 50)
 MainFrame.Active = true
-MainFrame.Draggable = true -- Você pode arrastar o painel
+MainFrame.Draggable = true
 
 UICorner.CornerRadius = UDim.new(0, 8)
 UICorner.Parent = MainFrame
 
--- Configurações do Botão
 ToggleBtn.Name = "ToggleBtn"
 ToggleBtn.Parent = MainFrame
 ToggleBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
@@ -29,10 +28,9 @@ ToggleBtn.TextSize = 18
 
 local Ativado = false
 
--- Função Principal do Script (Sua lógica anterior)
+-- Funcao de Transformar (Mesma de antes)
 local function Transformar()
     if not Ativado then return end
-    
     for _, v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("TextLabel") then
             local textLower = string.lower(v.Text)
@@ -46,7 +44,6 @@ local function Transformar()
                 v.TextColor3 = Color3.new(1, 0.84, 0)
             end
         end
-        
         if v.Name == "Cyber" and v:IsA("BasePart") then
             if not v:FindFirstChild("FogoDragon") then
                 local f = Instance.new("Fire", v)
@@ -58,7 +55,7 @@ local function Transformar()
     end
 end
 
--- Evento do Botão
+-- Botao Ligar/Desligar
 ToggleBtn.MouseButton1Click:Connect(function()
     Ativado = not Ativado
     if Ativado then
@@ -67,7 +64,6 @@ ToggleBtn.MouseButton1Click:Connect(function()
     else
         ToggleBtn.Text = "DESLIGADO"
         ToggleBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
-        -- Limpa o fogo ao desligar
         for _, v in pairs(game.Workspace:GetDescendants()) do
             if v.Name == "FogoDragon" then v:Destroy() end
         end
