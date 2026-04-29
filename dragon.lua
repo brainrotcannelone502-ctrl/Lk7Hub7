@@ -3,18 +3,22 @@ local function TransformarBloco()
         if v:IsA("TextLabel") then
             local textLower = string.lower(v.Text)
             
-            if string.find(textLower, "dragon luck block") and v.TextColor3 == Color3.new(1, 0, 0) then
+            if string.find(textLower, "cyber") then
                 v.Text = "Cyber"
                 v.TextColor3 = Color3.fromRGB(0, 255, 255)
-            end
-
-            if string.find(textLower, "secret") or string.find(textLower, "og dragon") then
-                v.Text = "DRAGON LUCK BLOCK"
-                v.TextColor3 = Color3.new(1, 0.84, 0)
-            end
-
-            if string.find(textLower, "lucky block") then
                 v.Visible = true
+            end
+
+            if v.Text == "Lucky Block" then
+                v.Visible = false
+            end
+
+            if string.find(textLower, "secret") or string.find(textLower, "og dragon") or string.find(textLower, "dragon luck block") then
+                if v.TextColor3 ~= Color3.fromRGB(0, 255, 255) then
+                    v.Text = "DRAGON LUCK BLOCK"
+                    v.TextColor3 = Color3.new(1, 0.84, 0)
+                    v.Visible = true
+                end
             end
         end
 
@@ -31,4 +35,4 @@ task.spawn(function()
     end
 end)
 
-print("Dragon Luck Visual v3 Loaded")
+print("Dragon Luck Visual v4 - Clean Loaded")
